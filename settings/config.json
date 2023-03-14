@@ -1,0 +1,19 @@
+{
+    "directories": {
+        "saved_model": "./data/model",
+        "training_data": "./data/training"
+    },
+    "image_size": {
+        "width": 275,
+        "height": 183
+    },
+    "labels": [
+        "audi",
+        "hyundai_creta",
+        "mahindra_scorpio",
+        "rolls_royce",
+        "swift",
+        "tata_safari",
+        "toyota_innova"
+    ]
+}
