@@ -30,6 +30,9 @@ class PredictionModel:
             self.config = getJson('./settings/config.json')
             self.image_size = [self.config['image_size']['width'], self.config['image_size']['height']]
             self.labels = self.config['labels']
+        else:
+            print('Please run config creator to create a config file')
+            exit(0)
 
         self.model = keras.models.load_model(self.config['directories']['saved_model'])
 

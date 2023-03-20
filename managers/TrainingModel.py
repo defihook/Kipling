@@ -71,9 +71,10 @@ class TrainingModel:
         for label in self.labels:
             path = os.path.join(self.config['directories']['training_data'], label)
             for image in os.listdir(path):
-                image_as_array = cv2.resize(cv2.imread(os.path.join(path, image)),
-                                            (self.image_size[0], self.image_size[1]))
-                data.append([image_as_array, self.labels.index(label)])
+                if image.endswith('.png') or image.endswith('.jpg') or image.endswith('.jpeg'):
+                    image_as_array = cv2.resize(cv2.imread(os.path.join(path, image)),
+                                                (self.image_size[0], self.image_size[1]))
+                    data.append([image_as_array, self.labels.index(label)])
         random.shuffle(data)
         return data
 
@@ -117,13 +118,16 @@ class TrainingModel:
             self.config = getJson('./settings/config.json')
             self.image_size = [self.config['image_size']['width'], self.config['image_size']['height']]
             self.labels = self.config['labels']
+        else:
+            print('Please run config creator to create a config file')
+            exit(0)
 
         self.setTrainingLabels(self.formatData())
         self.createModel()
 
         X_Train, X_Test, Y_Train, Y_Test = train_test_split(self.data[0], self.data[1], test_size=0.2, random_state=4)
         self.model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-        self.model.fit(X_Train, Y_Train, batch_size=16, epochs=5, verbose=1, validation_data=(X_Test, Y_Test))
+        self.model.fit(X_Train, Y_Train, batch_size=16, epochs=7, verbose=1, validation_data=(X_Test, Y_Test))
 
         self.model.save(self.config['directories']['saved_model'])
 

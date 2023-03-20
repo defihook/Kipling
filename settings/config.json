@@ -4,16 +4,8 @@
         "training_data": "./data/training"
     },
     "image_size": {
-        "width": 275,
-        "height": 183
+        "width": 100,
+        "height": 100
     },
-    "labels": [
-        "audi",
-        "hyundai_creta",
-        "mahindra_scorpio",
-        "rolls_royce",
-        "swift",
-        "tata_safari",
-        "toyota_innova"
-    ]
+    "labels": []
 }

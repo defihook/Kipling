@@ -20,5 +20,6 @@ elif MODE == 2:
             break
 
         prediction = Model.predict(path)
+        print(prediction[0])
         highest = prediction[0].tolist().index(max(prediction[0]))
-        print(f"\nIt looks most like a {Model.labels[highest]}, I am {(prediction[0][highest] * 100)}% sure")
+        print(f"\nThe item looks most like label: {Model.labels[highest]}, I am {(prediction[0][highest] * 100)}% sure")
