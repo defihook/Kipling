@@ -18,6 +18,7 @@ vosk = "*"
 pyttsx3 = "*"
 
 [dev-packages]
+certifi = ">=2023.7.22"
 
 [requires]
 python_version = "3.11"
